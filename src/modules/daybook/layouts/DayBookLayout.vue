@@ -11,13 +11,12 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from '@vue/runtime-core'
+import { defineAsyncComponent } from 'vue'
 
 export default {
   components: {
     NavBar: defineAsyncComponent(() => import('../components/NavBar.vue')),
     EntryList: defineAsyncComponent(() => import('../components/EntryList.vue'))
-
   }
 }
 </script>
