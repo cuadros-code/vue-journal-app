@@ -21,7 +21,6 @@
 
   </div>
   <hr>
-
   <div class="d-flex flex-column px-3 h-75">
     <textarea 
       placeholder="¿Qué sucedío hoy?"
@@ -37,10 +36,29 @@
 
 <script>
 import { defineAsyncComponent } from 'vue'
+import { mapGetters } from 'vuex'
 
 export default {
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     Fab: defineAsyncComponent(() => import('@/modules/daybook/components/Fab.vue'))
+  },
+  created() {
+    this.loadEntry()
+  },
+  computed: {
+    ...mapGetters('journal', ['getEntryById']),
+  },
+  methods: {
+    loadEntry() {
+      const data = this.getEntryById(this.id)
+      console.log(data)
+    }
   }
 }
 </script>

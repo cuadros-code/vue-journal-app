@@ -6,6 +6,7 @@ export const getEntriesByTerm = ( state ) => ( searchText = '' ) => {
   return state.entries.filter( entry => entry.text.toLowerCase().includes( searchText.toLowerCase() ) )
 }
 
-export const getEntriesById = ( /*state*/ ) => {
-
+export const getEntryById = ( state ) => ( id ) => {
+  const entry = state.entries.find( entry => entry.id === id )
+  return entry ? {...entry} : {}
 }
