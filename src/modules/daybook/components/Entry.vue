@@ -4,9 +4,9 @@
     @click="$router.push({ name: 'entry', params: { id: entry.id } })"
   >
     <div class="entry-title d-flex">
-      <span class="text-success fs-5 fw-bold" >{{ entryDay }}</span>
-      <span class="mx-1 fs-5" >{{ entryMonth }}</span>
-      <span class="mx-2 fw-light" >{{ entryYear }}, {{ entryDayOfWeek }}</span>
+      <span class="text-success fs-5 fw-bold" >{{ dateData.day }}</span>
+      <span class="mx-1 fs-5" >{{ dateData.month }}</span>
+      <span class="mx-2 fw-light" >{{ dateData.year }}, {{ dateData.dayOfWeek }}</span>
     </div>
     <div class="entry-description">
       {{ shortText }}
@@ -16,8 +16,7 @@
 
 <script>
 
-const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-const days   = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado']
+import { getDayMonthYear } from '@/modules/daybook/helpers/getDayMonthYear'
 
 export default {
   props: {
@@ -27,17 +26,8 @@ export default {
     }
   },
   computed: {
-    entryDay() {
-      return new Date(this.entry.date).getDate()
-    },
-    entryMonth() {
-      return months[new Date(this.entry.date).getMonth() + 1]
-    },
-    entryYear() {
-      return new Date(this.entry.date).getFullYear()
-    },
-    entryDayOfWeek() {
-      return days[new Date(this.entry.date).getDay()]
+    dateData(){
+      return getDayMonthYear(this.entry.date)
     },
     shortText() {
       return ( this.entry.text.length > 100 ) 

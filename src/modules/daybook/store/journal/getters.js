@@ -8,5 +8,5 @@ export const getEntriesByTerm = ( state ) => ( searchText = '' ) => {
 
 export const getEntryById = ( state ) => ( id ) => {
   const entry = state.entries.find( entry => entry.id === id )
-  return entry ? {...entry} : {}
+  return entry ? {...entry} : null
 }
