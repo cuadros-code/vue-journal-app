@@ -32,6 +32,7 @@ export default {
     }
   },
   computed: {
+    // Vuex por modulo 'journal'
     ...mapGetters( 'journal', ['getEntriesByTerm'] ),
     entriesByTerm() {
       return this.getEntriesByTerm(this.searchText);

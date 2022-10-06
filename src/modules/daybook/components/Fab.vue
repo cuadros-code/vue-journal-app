@@ -1,5 +1,9 @@
 <template>
-  <button class="btn btn-primary">
+  <!-- Emitir un evento al padre -->
+  <button 
+    class="btn btn-primary"
+    @click="$emit('on:click')"
+  >
     <i :class="'fa fa-2x ' + icon"></i>
   </button>
 </template>
