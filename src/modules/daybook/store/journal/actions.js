@@ -28,6 +28,15 @@ export const updateEntry = async ({ commit }, entry) => {
   }
 }
 
-export const createEntries = async (/*{ commit }*/) => { 
-
+export const createEntry = async ({ commit }, newEntry) => { 
+  try {
+    const { data } = await journalApi.post(`/entries.json`, newEntry)
+    const entry = {
+      id: data.name,
+      ...newEntry
+    }
+    commit('addEntry', entry)
+  } catch (error) {
+    console.log(error);
+  }
 }

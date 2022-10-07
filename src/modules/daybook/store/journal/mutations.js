@@ -8,6 +8,6 @@ export const updateEntry = ( state, newEntry ) => {
   state.entries = state.entries.map( entry => entry.id === newEntry.id ? newEntry : entry )
 }
 
-export const addEntry = ( /*state*/ ) => { 
-
+export const addEntry = ( state, newEntry ) => { 
+  state.entries = [newEntry, ...state.entries]
 }

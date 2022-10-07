@@ -74,7 +74,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('journal', ['updateEntry']),
+    ...mapActions('journal', ['updateEntry', 'createEntry']),
 
     loadEntry() {
       let entry;
@@ -94,7 +94,7 @@ export default {
       if ( this.entry.id  ) {
         await this.updateEntry(this.entry)
       } else {
-        console.log('new entry');
+        this.createEntry(this.entry)
       }
     }
   }
