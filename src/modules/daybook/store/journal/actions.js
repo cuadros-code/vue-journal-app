@@ -22,7 +22,7 @@ export const updateEntry = async ({ commit }, entry) => {
   try {
     const { id } = entry
     const { data } = await journalApi.put(`/entries/${id}.json`, entry)
-    commit('updateEntry', data)
+    commit('updateEntry', {...data})
   } catch (error) {
     console.log(error)
   }

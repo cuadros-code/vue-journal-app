@@ -77,15 +77,25 @@ export default {
     ...mapActions('journal', ['updateEntry']),
 
     loadEntry() {
-      const entry = this.getEntryById(this.id)
-      if ( !entry ) {
-        return this.$router.push({ name: 'no-entry' })
+      let entry;
+      if (this.id === 'new') { 
+        entry = {
+          date: new Date().getTime(),
+          text: '',
+        }
+      } else {
+        entry = this.getEntryById(this.id)
+        if ( !entry ) return this.$router.push({ name: 'no-entry' })
       }
       this.entry = entry
     },
 
     async saveEntry() {
-      this.updateEntry(this.entry)
+      if ( this.entry.id  ) {
+        await this.updateEntry(this.entry)
+      } else {
+        console.log('new entry');
+      }
     }
   }
 }
